@@ -37,7 +37,16 @@ public class RedisMessenger {
         GenericObjectPoolConfig config = new GenericObjectPoolConfig();
         config.setMaxTotal(20);
 
-        jedisPool = new JedisPool(config, host, port, timeout, password);
+        if(password == null) {
+            // no password specified
+            jedisPool = new JedisPool(config, host, port, timeout);
+        }else{
+            jedisPool = new JedisPool(config, host, port, timeout, password);
+        }
+    }
+
+    public RedisMessenger(JavaPlugin plugin, String host, int port, int timeout) {
+        this(plugin, host, port, timeout, null);
     }
 
     public void initialize() {
