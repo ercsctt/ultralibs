@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -166,6 +167,18 @@ public class Configuration {
      */
     public void set(String path, Object value) {
         configuration.set(path, value);
+    }
+
+    public YamlConfiguration getConfiguration(){
+        return configuration;
+    }
+
+    public void save() {
+        try {
+            configuration.save(file);
+        } catch (IOException e) {
+            //e.printStackTrace();
+        }
     }
 
 }

@@ -33,6 +33,7 @@ public class RedisMessenger {
 
     public RedisMessenger(JavaPlugin plugin, String host, int port, int timeout, String password) {
         this.plugin = plugin;
+        this.gson = new Gson();
 
         GenericObjectPoolConfig config = new GenericObjectPoolConfig();
         config.setMaxTotal(20);
