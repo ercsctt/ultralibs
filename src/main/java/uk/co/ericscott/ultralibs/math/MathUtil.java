@@ -1,5 +1,8 @@
 package uk.co.ericscott.ultralibs.math;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class MathUtil
 {
     /**
@@ -17,5 +20,9 @@ public class MathUtil
         value = value * factor;
         long tmp = Math.round(value);
         return (double) tmp / factor;
+    }
+
+    public static String commaFormat(int value) {
+        return NumberFormat.getNumberInstance(Locale.US).format(value);
     }
 }
