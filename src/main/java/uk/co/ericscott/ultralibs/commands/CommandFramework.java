@@ -12,6 +12,7 @@ import org.bukkit.help.HelpTopicComparator;
 import org.bukkit.help.IndexHelpTopic;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
+import uk.co.ericscott.ultralibs.utils.ChatUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -70,7 +71,7 @@ public class CommandFramework implements CommandExecutor {
 				Object methodObject = commandMap.get(cmdLabel).getValue();
 				Command command = method.getAnnotation(Command.class);
 				if (!command.permission().isEmpty() && !sender.hasPermission(command.permission())) {
-					sender.sendMessage(command.noPerm());
+					sender.sendMessage(ChatUtils.translate(command.noPerm()));
 					return true;
 				}
 				if (command.inGameOnly() && !(sender instanceof Player)) {
