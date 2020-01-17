@@ -91,12 +91,23 @@ public class RedisMessenger {
         });
     }
 
-    public void send(String channel, Map<String, Object> message) {
-        plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+    public void send(String channel, Map<String, Object> message, boolean async) {
+        if (!async) {
             try (Jedis jedis = jedisPool.getResource()) {
                 jedis.publish(channel, serialize(message));
             }
-        });
+        } else {
+            plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+                try (Jedis jedis = jedisPool.getResource())
+                {
+                    jedis.publish(channel, serialize(message));
+                }
+            });
+        }
+    }
+
+    public void send(String channel, Map<String, Object> message) {
+        send(channel, message, true);
     }
 
     public void registerListeners(Object... objects) {
