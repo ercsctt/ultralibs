@@ -19,6 +19,7 @@ public class LazyLocation {
     private float yaw;
 
     public LazyLocation(Location loc) {
+        this(loc.getWorld().getName(), loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
         setLocation(loc);
     }
 
