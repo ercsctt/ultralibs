@@ -28,7 +28,7 @@ public class GUI implements InventoryHolder {
 
     public GUIButton getButton(int slot) {
         if (buttons.get(slot) == null)
-            throw new NullPointerException("There's no such gui button at that slot.");
+            return null;
         else return buttons.get(slot);
     }
 
