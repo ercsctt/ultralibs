@@ -22,6 +22,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+* Credit to Ptech for this cool redis messenger
+*/
+
 @Getter
 public class RedisMessenger {
 
